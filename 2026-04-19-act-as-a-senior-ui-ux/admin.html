@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Posh Automats</title>
+  <meta name="description" content="Standalone admin dashboard for managing Posh Automats website content, services, leads, bookings, gallery, testimonials, and basic analytics with Supabase.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body class="admin-body">
+  <section class="admin-auth-shell" data-auth-shell>
+    <div class="admin-auth-card">
+      <a class="admin-brand" href="index.html">
+        <img class="brand-logo" src="assets/logo-posh-automats.jpg" alt="Posh Automats" width="220" height="64" decoding="async">
+      </a>
+      <span class="eyebrow">Supabase Admin</span>
+      <h1>Sign in to manage the website</h1>
+      <p>Use the admin user you create in Supabase Auth. This dashboard writes directly to your hosted data.</p>
+
+      <form class="form-grid" data-auth-form>
+        <div class="field">
+          <label for="admin-email">Email</label>
+          <input id="admin-email" name="email" type="email" autocomplete="email" placeholder="admin@example.com" required>
+        </div>
+        <div class="field">
+          <label for="admin-password">Password</label>
+          <input id="admin-password" name="password" type="password" autocomplete="current-password" placeholder="Password" required>
+        </div>
+        <button class="button button-primary" type="submit">Sign in</button>
+      </form>
+
+      <p class="admin-inline-message" data-auth-message></p>
+    </div>
+  </section>
+
+  <div class="admin-shell" data-admin-app hidden>
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="index.html">
+        <img class="brand-logo" src="assets/logo-posh-automats.jpg" alt="Posh Automats" width="220" height="64" decoding="async">
+      </a>
+      <div class="admin-sidebar-copy">
+        <span class="eyebrow">Admin Panel</span>
+        <h1>Manage your website from one place.</h1>
+        <p>This dashboard is connected to Supabase, so website updates can go live after hosting.</p>
+        <p class="admin-schema-banner" data-schema-banner>Checking Supabase schema status...</p>
+      </div>
+
+      <nav class="admin-nav" aria-label="Admin sections">
+        <a href="#overview">Overview</a>
+        <a href="#content">Edit Website Content</a>
+        <a href="#services">Services / Products</a>
+        <a href="#leads">Enquiries / Leads</a>
+        <a href="#bookings">Bookings / Appointments</a>
+        <a href="#gallery">Gallery & Testimonials</a>
+        <a href="#analytics">Basic Analytics</a>
+      </nav>
+
+      <div class="admin-sidebar-actions">
+        <button class="button button-primary" type="button" data-export-dashboard>Export Snapshot</button>
+        <button class="button button-secondary" type="button" data-reset-dashboard>Reset Seed Data</button>
+        <a class="button button-secondary" href="health.html">Open Health Check</a>
+        <button class="button button-secondary" type="button" data-logout-button>Sign out</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <span class="eyebrow">Operations Dashboard</span>
+          <h2>Separate admin panel for content and leads</h2>
+          <p>Quick edits, lists, status updates, and analytics backed by Supabase.</p>
+        </div>
+        <div class="admin-topbar-actions">
+          <div class="admin-sync-card">
+            <strong>Status</strong>
+            <p data-save-status>Connected. Loading data...</p>
+          </div>
+          <div class="admin-sync-card admin-sync-card--light">
+            <strong>Signed in as</strong>
+            <p data-admin-user>Email not loaded</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="admin-section" id="overview">
+        <div class="admin-section-heading">
+          <div>
+            <span class="eyebrow">Overview</span>
+            <h3>High-level admin summary</h3>
+          </div>
+        </div>
+
+        <div class="admin-metrics" data-overview-metrics></div>
+
+        <div class="admin-grid two">
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Recent leads</h3>
+              <span class="admin-badge neutral">Live summary</span>
+            </div>
+            <div data-recent-leads></div>
+          </article>
+
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Upcoming bookings</h3>
+              <span class="admin-badge neutral">Schedule</span>
+            </div>
+            <div data-upcoming-bookings></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="admin-section" id="content">
+        <div class="admin-section-heading">
+          <div>
+            <span class="eyebrow">Edit Website Content</span>
+            <h3>Core website copy</h3>
+          </div>
+        </div>
+
+        <div class="admin-grid two">
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Content editor</h3>
+              <span class="admin-badge accent">Main copy</span>
+            </div>
+
+            <form class="form-grid" data-content-form>
+              <div class="field">
+                <label for="company-name">Company name</label>
+                <input id="company-name" name="companyName" type="text" placeholder="Posh Automats">
+              </div>
+              <div class="field">
+                <label for="contact-email">Primary email</label>
+                <input id="contact-email" name="contactEmail" type="email" placeholder="customersupport@poshautomats.com">
+              </div>
+              <div class="field">
+                <label for="hero-title">Homepage hero title</label>
+                <input id="hero-title" name="heroTitle" type="text" placeholder="Industrial automation built to improve productivity">
+              </div>
+              <div class="field">
+                <label for="hero-lead">Homepage hero lead</label>
+                <textarea id="hero-lead" name="heroLead" placeholder="Short hero description"></textarea>
+              </div>
+              <div class="field">
+                <label for="about-snippet">About snippet</label>
+                <textarea id="about-snippet" name="aboutSnippet" placeholder="Short about text"></textarea>
+              </div>
+              <div class="field">
+                <label for="cta-title">CTA title</label>
+                <input id="cta-title" name="ctaTitle" type="text" placeholder="Planning an automation upgrade?">
+              </div>
+              <div class="field">
+                <label for="cta-text">CTA text</label>
+                <textarea id="cta-text" name="ctaText" placeholder="Call to action copy"></textarea>
+              </div>
+              <button class="button button-primary" type="submit">Save website content</button>
+            </form>
+          </article>
+
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Saved preview</h3>
+              <span class="admin-badge neutral">Current values</span>
+            </div>
+            <div class="admin-stack" data-content-preview></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="admin-section" id="services">
+        <div class="admin-section-heading">
+          <div>
+            <span class="eyebrow">Manage Services / Products</span>
+            <h3>Add or update offerings</h3>
+          </div>
+        </div>
+
+        <div class="admin-grid two">
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Service form</h3>
+              <span class="admin-badge accent">CRUD</span>
+            </div>
+
+            <form class="form-grid" data-service-form>
+              <input name="serviceId" type="hidden">
+              <div class="field">
+                <label for="service-name">Service / product name</label>
+                <input id="service-name" name="title" type="text" placeholder="PLC and HMI Integration" required>
+              </div>
+              <div class="field">
+                <label for="service-category">Category</label>
+                <input id="service-category" name="category" type="text" placeholder="Automation" required>
+              </div>
+              <div class="field">
+                <label for="service-price">Starting price</label>
+                <input id="service-price" name="price" type="text" placeholder="Custom quote">
+              </div>
+              <div class="field">
+                <label for="service-description">Description</label>
+                <textarea id="service-description" name="description" placeholder="Short description" required></textarea>
+              </div>
+              <div class="field">
+                <label for="service-order">Sort order</label>
+                <input id="service-order" name="sortOrder" type="number" min="1" placeholder="1">
+              </div>
+              <div class="admin-form-actions">
+                <button class="button button-primary" type="submit">Save service</button>
+                <button class="button button-secondary" type="button" data-service-cancel>Cancel edit</button>
+              </div>
+            </form>
+          </article>
+
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Service list</h3>
+              <span class="admin-badge neutral" data-service-count>0 items</span>
+            </div>
+            <div class="admin-list" data-services-list></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="admin-section" id="leads">
+        <div class="admin-section-heading">
+          <div>
+            <span class="eyebrow">View Enquiries / Leads</span>
+            <h3>Track sales conversations</h3>
+          </div>
+        </div>
+
+        <div class="admin-grid two">
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Add lead</h3>
+              <span class="admin-badge accent">Pipeline</span>
+            </div>
+
+            <form class="form-grid" data-lead-form>
+              <div class="field">
+                <label for="lead-name">Lead name</label>
+                <input id="lead-name" name="name" type="text" placeholder="Company or person name" required>
+              </div>
+              <div class="field">
+                <label for="lead-source">Source</label>
+                <select id="lead-source" name="source">
+                  <option value="Website">Website</option>
+                  <option value="Referral">Referral</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Phone">Phone</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="lead-service">Interested in</label>
+                <input id="lead-service" name="serviceInterest" type="text" placeholder="Automation Solutions">
+              </div>
+              <div class="field">
+                <label for="lead-email">Email</label>
+                <input id="lead-email" name="email" type="email" placeholder="name@company.com">
+              </div>
+              <div class="field">
+                <label for="lead-notes">Notes</label>
+                <textarea id="lead-notes" name="notes" placeholder="Lead notes"></textarea>
+              </div>
+              <button class="button button-primary" type="submit">Add lead</button>
+            </form>
+          </article>
+
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Lead board</h3>
+              <span class="admin-badge neutral">Status updates</span>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Source</th>
+                    <th>Interest</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody data-leads-table></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="admin-section" id="bookings">
+        <div class="admin-section-heading">
+          <div>
+            <span class="eyebrow">Bookings / Appointments</span>
+            <h3>Manage calls, visits, and meetings</h3>
+          </div>
+        </div>
+
+        <div class="admin-grid two">
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Create booking</h3>
+              <span class="admin-badge accent">Calendar</span>
+            </div>
+
+            <form class="form-grid" data-booking-form>
+              <div class="field">
+                <label for="booking-name">Client name</label>
+                <input id="booking-name" name="client" type="text" placeholder="Client name" required>
+              </div>
+              <div class="field">
+                <label for="booking-date">Date</label>
+                <input id="booking-date" name="date" type="date" required>
+              </div>
+              <div class="field">
+                <label for="booking-time">Time</label>
+                <input id="booking-time" name="time" type="time" required>
+              </div>
+              <div class="field">
+                <label for="booking-type">Type</label>
+                <select id="booking-type" name="bookingType">
+                  <option value="Call">Call</option>
+                  <option value="Site Visit">Site Visit</option>
+                  <option value="Demo">Demo</option>
+                  <option value="Review">Review</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="booking-owner">Assigned to</label>
+                <input id="booking-owner" name="owner" type="text" placeholder="Sales or engineering owner">
+              </div>
+              <button class="button button-primary" type="submit">Add booking</button>
+            </form>
+          </article>
+
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Appointment list</h3>
+              <span class="admin-badge neutral">Upcoming and completed</span>
+            </div>
+            <div class="admin-list" data-bookings-list></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="admin-section" id="gallery">
+        <div class="admin-section-heading">
+          <div>
+            <span class="eyebrow">Gallery & Testimonials</span>
+            <h3>Media and social proof</h3>
+          </div>
+        </div>
+
+        <div class="admin-grid two">
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Gallery manager</h3>
+              <span class="admin-badge accent">Media</span>
+            </div>
+
+            <form class="form-grid" data-gallery-form>
+              <div class="field">
+                <label for="gallery-title">Gallery title</label>
+                <input id="gallery-title" name="title" type="text" placeholder="Inspection Cell 01" required>
+              </div>
+              <div class="field">
+                <label for="gallery-type">Media type</label>
+                <select id="gallery-type" name="mediaType">
+                  <option value="image">Image</option>
+                  <option value="video">Video</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="gallery-file-upload">Upload file</label>
+                <input id="gallery-file-upload" name="fileUpload" type="file" accept="image/*,video/*">
+                <p class="form-hint" style="margin-top:0.55rem;">Uploads go to Supabase Storage bucket <strong>gallery-media</strong>. You can still paste a public URL below if needed.</p>
+              </div>
+              <div class="field">
+                <label for="gallery-file">File path / URL</label>
+                <input id="gallery-file" name="fileUrl" type="text" placeholder="https://..." required>
+              </div>
+              <div class="field">
+                <label for="gallery-caption">Caption</label>
+                <textarea id="gallery-caption" name="caption" placeholder="Short caption"></textarea>
+              </div>
+              <div class="field">
+                <label for="gallery-theme">Theme label</label>
+                <input id="gallery-theme" name="themeLabel" type="text" placeholder="Automation">
+              </div>
+              <button class="button button-primary" type="submit">Add gallery item</button>
+            </form>
+
+            <div class="admin-list compact" data-gallery-list></div>
+          </article>
+
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Testimonial manager</h3>
+              <span class="admin-badge accent">Trust</span>
+            </div>
+
+            <form class="form-grid" data-testimonial-form>
+              <div class="field">
+                <label for="testimonial-name">Client name</label>
+                <input id="testimonial-name" name="name" type="text" placeholder="Bosch India" required>
+              </div>
+              <div class="field">
+                <label for="testimonial-role">Role / company</label>
+                <input id="testimonial-role" name="role" type="text" placeholder="Plant Head">
+              </div>
+              <div class="field">
+                <label for="testimonial-text">Testimonial</label>
+                <textarea id="testimonial-text" name="quote" placeholder="Client feedback" required></textarea>
+              </div>
+              <button class="button button-primary" type="submit">Add testimonial</button>
+            </form>
+
+            <div class="admin-list compact" data-testimonials-list></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="admin-section" id="analytics">
+        <div class="admin-section-heading">
+          <div>
+            <span class="eyebrow">Basic Analytics</span>
+            <h3>Operational signals</h3>
+          </div>
+        </div>
+
+        <div class="admin-grid two">
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Pipeline distribution</h3>
+              <span class="admin-badge neutral">Lead status mix</span>
+            </div>
+            <div class="admin-stack" data-status-chart></div>
+          </article>
+
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Lead sources</h3>
+              <span class="admin-badge neutral">Acquisition</span>
+            </div>
+            <div class="admin-stack" data-source-chart></div>
+          </article>
+        </div>
+
+        <div class="admin-grid two">
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Top service categories</h3>
+              <span class="admin-badge neutral">Portfolio mix</span>
+            </div>
+            <div class="admin-stack" data-category-chart></div>
+          </article>
+
+          <article class="admin-panel">
+            <div class="admin-panel-heading">
+              <h3>Performance summary</h3>
+              <span class="admin-badge accent">Snapshot</span>
+            </div>
+            <div class="admin-stack" data-performance-summary></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="assets/admin.js"></script>
+</body>
+</html>

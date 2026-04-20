@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Posh Automats</title>
+  <meta name="description" content="Contact Posh Automats for industrial automation, special purpose machines, and manufacturing support requirements.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <span>Contact Posh Automats</span>
+        <span>Fastest route from inquiry to conversation</span>
+      </div>
+    </div>
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/logo-posh-automats.jpg" alt="Posh Automats" width="240" height="70" decoding="async">
+      </a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="nav-link" href="automation.html">Automation</a>
+        <a class="nav-link" href="spm.html">SPM</a>
+        <a class="nav-link" href="customers.html">Customers</a>
+        <a class="nav-link" href="gallery.html">Gallery</a>
+        <a class="nav-link" href="careers.html">Careers</a>
+        <a class="nav-link is-active" aria-current="page" href="contact.html">Contact</a>
+      </nav>
+      <div class="desktop-actions">
+        <a class="button button-primary" href="#contact-form">Send Inquiry</a>
+      </div>
+      <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="site-mobile-nav" aria-label="Open menu">☰</button>
+    </div>
+    <div class="container mobile-nav" id="site-mobile-nav" data-mobile-nav>
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="automation.html">Automation</a>
+      <a class="nav-link" href="spm.html">SPM</a>
+      <a class="nav-link" href="customers.html">Customers</a>
+      <a class="nav-link" href="gallery.html">Gallery</a>
+      <a class="nav-link" href="careers.html">Careers</a>
+      <a class="nav-link is-active" aria-current="page" href="contact.html">Contact</a>
+      <a class="button button-primary" href="#contact-form">Send Inquiry</a>
+    </div>
+  </header>
+<main id="main-content">
+<section class="page-hero">
+      <div class="container page-hero-box reveal">
+        <span class="eyebrow">Contact</span>
+        <h1>Let’s talk about your manufacturing requirement.</h1>
+        <p class="lead">The contact experience is redesigned to feel clearer, more trustworthy, and easier to complete without removing the existing inquiry flow.</p>
+      </div>
+    </section>
+
+    <section class="section" id="contact-form">
+      <div class="container contact-grid">
+        <div class="form-card reveal">
+          <h2>Send us a message</h2>
+          <p class="form-hint">Submitting sends your inquiry through the same mail process used on poshautomats.com.</p>
+          <form class="form-grid" method="post" action="https://www.poshautomats.com/posemail.php" data-contact-form>
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="Name" type="text" placeholder="Your name" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="Email" type="email" placeholder="your@email.com" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input id="subject" name="Subject" type="text" placeholder="Project, automation, SPM, or general inquiry" required>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="Message" placeholder="Share your requirement, production bottleneck, or project objective." required></textarea>
+            </div>
+            <button class="button button-primary" type="submit">Send Message</button>
+            <p class="form-hint" data-contact-status></p>
+          </form>
+        </div>
+        <div class="reveal">
+          <div class="card" style="margin-bottom:1.4rem;">
+            <h3>Contact details</h3>
+            <p>A1-F11 Sidco Industrial Estate, Maraimalai Nagar, Chengalpattu Dist, Tamilnadu-603209</p>
+            <p>+91 9786055500</p>
+            <p>customersupport@poshautomats.com</p>
+          </div>
+          <div class="card">
+            <h3>Best use of this form</h3>
+            <ul class="list">
+              <li>Automation requirement discussion</li>
+              <li>SPM inquiry and custom machine conversation</li>
+              <li>Manufacturing productivity improvement discussions</li>
+              <li>General engineering and support requests</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+</main>
+
+  <footer class="site-footer"><div class="container footer-bottom">Contact page redesign for Posh Automats.</div></footer>
+
+  <script src="assets/app.js"></script>
+  <script type="module" src="assets/site-data.js"></script>
+</body>
+</html>
