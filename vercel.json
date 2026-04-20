@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/assets/(.*)",
+      "destination": "/2026-04-19-act-as-a-senior-ui-ux/assets/$1"
+    },
+    {
+      "source": "/",
+      "destination": "/2026-04-19-act-as-a-senior-ui-ux/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/2026-04-19-act-as-a-senior-ui-ux/$1"
+    }
+  ]
+}
