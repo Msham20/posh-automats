@@ -47,6 +47,8 @@ async function hydrateHomePage() {
     setText("[data-hero-title]", settings.heroTitle);
     setText("[data-about-snippet]", settings.aboutSnippet);
     setText("[data-cta-title]", settings.ctaTitle);
+    setText("[data-site-company-name]", settings.companyName);
+    setText("[data-site-contact-email]", settings.contactEmail);
 
     setHtml("[data-hero-lead]", escapeHtml(settings.heroLead));
     setHtml("[data-cta-text]", escapeHtml(settings.ctaText));
